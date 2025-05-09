@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .no-drag {
+    user-drag: none;
+    -webkit-user-drag: none;
+  }
+
+  .custom-border {
+    padding: 5px; /* Slight padding to ensure full wrap */
+    z-index: 10;
+    overflow: visible;
+    border-radius: 8px;
+  }
+
+  .custom-border::before {
+    content: "";
+    position: absolute;
+    inset: -4px; /* Slightly expand */
+    padding: 2px; /* Border thickness */
+    background: conic-gradient(
+      from 0deg,
+      #0369a1 0deg 110deg,
+      #b91c1c 110deg 250deg,
+      #ca8a04 250deg 360deg
+    );
+    -webkit-mask:
+      linear-gradient(white 0 0) content-box,
+      linear-gradient(white 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    border-radius: inherit;
+    z-index: 10;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* Keyframes for rotating the gradient */
+  @keyframes rotateGradient {
+    0% {
+      background: conic-gradient(
+        from 0deg,
+        #0369a1 0deg 110deg,
+        #b91c1c 110deg 250deg,
+        #ca8a04 250deg 360deg
+      );
+    }
+    100% {
+      background: conic-gradient(
+        from 360deg,
+        #0369a1 0deg 110deg,
+        #b91c1c 110deg 250deg,
+        #ca8a04 250deg 360deg
+      );
+    }
+  }
+
+  /* Hover effect that triggers the animation */
+  .custom-border:hover::before {
+    animation: rotateGradient 1s linear infinite; /* Animate the gradient */
+    cursor: pointer;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  @apply bg-gray-950;
+}
+
+:root {
+  --foreground: #0a0a0a;
+  --background: #ffffff;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground: #0a0a0a;
+    --background: #ffffff;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-mako);
+}
+
+nav {
+  @apply bg-cover bg-center filter brightness-150;
+}
+
+.nav-item {
+  font-family: var(--font-mako);
+  @apply font-thin text-base sm:text-sm md:text-base rounded-lg px-2  my-5 inline-flex items-center no-underline transition ease-in-out transition;
+}
+
+.nav-item:hover {
+  @apply transition cursor-pointer ease-in-out;
+}
+
+.font-display {
+  font-family: var(--font-kanit);
+}
+
+.brand {
+  font-family: var(--font-kanit);
+  @apply font-bold text-xl md:text-2xl select-none;
+}
+
+h1 {
+  font-family: var(--font-kanit);
+  @apply text-4xl font-bold;
+}
+
+h2 {
+  font-family: var(--font-kanit);
+  @apply text-3xl font-semibold;
+}
+
+h3 {
+  font-family: var(--font-kanit);
+  @apply text-2xl font-medium;
+}
+
+h4 {
+  font-family: var(--font-kanit);
+  @apply text-xl font-medium;
+}
+
+h5 {
+  font-family: var(--font-kanit);
+  @apply text-lg font-medium;
+}
+
+h6 {
+  font-family: var(--font-kanit);
+  @apply text-base font-medium;
+}
+
+p {
+  @apply mt-5;
+}
+
+a.prose {
+  @apply underline;
+}
+
+.landing-photo {
+  @apply transition-all;
+}
+
+.landing-photo:hover {
+  @apply scale-[1] md:scale-[1.05] transition-all;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
