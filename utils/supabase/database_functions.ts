@@ -1,74 +1,30 @@
-import { Player } from "@/data/teams"
+import { Game } from "@/data/teams"
 import { createClient } from "@/utils/supabase/client";
 
-export async function updatePlayer(playerID: number, newPlayerData:  Omit<Player, "id" | "created_at" | "team_id">){
-    const supabase = await createClient();
-    console.log("attempting to update player with ID", playerID)
+export async function addGame(newGameData: Omit<Game, "id" | "created_at">) {
+  const supabase = createClient();
 
-    const dataToChange = {
-      first_name: newPlayerData.first_name,
-      last_name: newPlayerData.last_name,
-      tshirt_size: newPlayerData.tshirt_size, 
-      dietary_restrictions: newPlayerData.dietary_restrictions, 
-      emergency_contact_name: newPlayerData.emergency_contact_name, 
-      emergency_contact_phone_number: newPlayerData.emergency_contact_phone_number,
-      emergency_contact_relationship: newPlayerData.emergency_contact_relationship,
-      grade: Number(newPlayerData.grade),
-      // team_id: number,
-      verified: Boolean(newPlayerData.verified)
-    }
+  console.log("Attempting to add new game");
 
-    console.log("Verification value in updatePlayer:", {
-      input: newPlayerData.verified,
-      converted: Boolean(newPlayerData.verified),
-      final: dataToChange.verified
-    });
-    
-    console.log("Formatted Player:", dataToChange)
-    
-    const { error } = await supabase
-      .from('players')
-      .update(dataToChange)
-      .eq('id', playerID)
-      if (error) {
-        return { error };
-      }
-    
-    console.log("Successfully Updated Player");
-    return { success: true };
-}
- 
+  const dataToInsert: Omit<Game, "id" | "created_at"> = {
+    name: newGameData.name,
+    game_land: newGameData.game_land,
+    description: newGameData.description,
+    grade_levels: newGameData.grade_levels,
+    math_focus: newGameData.math_focus,
+    game_type: newGameData.game_type,
+    slug: newGameData.slug ?? newGameData.name.toLowerCase().replace(/ /g, "-"),
+  };
 
-// REQUIRES TEAM_ID
-export async function addPlayer(newPlayerData:  Omit<Player, "id" | "created_at">){
-    const supabase = await createClient();
+  console.log("Formatted Game for Insert:", dataToInsert);
 
-    console.log("attempting to add player")
+  const { error } = await supabase.from("games").insert(dataToInsert);
 
-    const dataToChange = {
-      first_name: newPlayerData.first_name,
-      last_name: newPlayerData.last_name,
-      role: "player",
-      tshirt_size: newPlayerData.tshirt_size, 
-      dietary_restrictions: newPlayerData.dietary_restrictions, 
-      emergency_contact_name: newPlayerData.emergency_contact_name, 
-      emergency_contact_phone_number: newPlayerData.emergency_contact_phone_number,
-      emergency_contact_relationship: newPlayerData.emergency_contact_relationship,
-      grade: Number(newPlayerData.grade),
-      team_id: Number(newPlayerData.team_id),
-      verified: Boolean(newPlayerData.verified)
-    }
+  if (error) {
+    return { error };
+  }
 
-    console.log("Formatted Player:", dataToChange)
-    
-    const { error } = await supabase
-      .from('players')
-      .insert(dataToChange)
-      if (error) {
-        return { error };
-      }
-    
-    console.log("Successfully Updated Player");
-    return { success: true };
+  console.log("Successfully added game");
+  return { success: true };
 }
 

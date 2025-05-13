@@ -28,9 +28,9 @@ const kanit = Kanit({
 });
 
 export const metadata: Metadata = {
-  title: "Flagway League",
+  title: "Math Playground",
   description:
-    "Flagway exists to create environments where students can practice and celebrate learning math.",
+    "A Math Playground that exposes K-8 students to Games that Enhance Mathematical Understanding.",
 };
 
 export default function RootLayout({

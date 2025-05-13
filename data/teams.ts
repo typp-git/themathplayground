@@ -1,146 +1,133 @@
 import { createClient } from '@/utils/supabase/client';
 
-export type Player = {
-  id?: number; // Unique identifier for the player
-  created_at?: string; // Timestamp when the player was created
-  first_name?: string; // Player's first name
-  last_name?: string; // Player's last name
-  name: string; // Player's full name
-  tshirt_size: string | null; // T-shirt size (nullable)
-  dietary_restrictions: string | null; // Dietary restrictions (nullable)
-  emergency_contact_name: string | null; // Emergency contact's name (nullable)
-  emergency_contact_phone_number: string | null; // Emergency contact's phone number (nullable)
-  emergency_contact_relationship: string | null; // Emergency contact's relation (nullable)
-  grade: number; // Player's grade 
-  team_id: number; // Foreign key referencing the team
-  verified: boolean; // Whether the player is verified
-  yearsYPP: number; // Years at YPP
-  city: string; // City of the player
-};
-
-export type Chaperone = Omit<Player, "grade">;
-export type Coach = Player
-
-export type Team = {
+export type Game = {
   id: number;
   created_at: string;
   name: string;
-  country: string;
-  coordinator_first_name: string;
-  coordinator_last_name: string;
-  coordinator_email: string;
-  coordinator_phone: string;
-  name_abbreviation: string;
-  state: string;
-  city: string;
+  game_land: GameLandName;
+  description: string;
+  grade_levels: string[];
+  math_focus: string;
+  game_type: GameType;
   slug?: string;
-  region?: string;
-  players: Player[];
+};
+
+export type GameLand = {
+  name: string;
+  data: {
+    games: Game[];
+  };
 };
 
 export type Region = {
   name: string;
   data: {
-    teams: Team[];
   };
 };
 
-const createMockPlayer = (name: string, grade: number, city: string, yearsYPP: number): Player => ({
-  name,
-  grade,
-  city,
-  yearsYPP,
-  tshirt_size: null,
-  dietary_restrictions: null,
-  emergency_contact_name: null,
-  emergency_contact_phone_number: null,
-  emergency_contact_relationship: null,
-  team_id: 0,
-  verified: false
-});
+const GAME_LANDS = [
+  "Algebra Land",
+  "Fraction Land",
+  "Flagway Land",
+  "Number Discovery",
+  "Innovation Land",
+] as const;
 
-const createMockTeam = (name: string, state: string, players: Player[] = []): Team => ({
+const GAME_TYPES = ["Open Floor", "Table Top"] as const;
+
+type GameLandName = typeof GAME_LANDS[number];
+type GameType = typeof GAME_TYPES[number];
+
+const createMockGame = (
+  name: string,
+  gameLandIndex: number,
+  description: string,
+  grade_levels: string[],
+  math_focus: string,
+  gameTypeIndex: number
+): Game => ({
   id: 0,
   created_at: new Date().toISOString(),
   name,
-  country: "USA",
-  coordinator_first_name: "",
-  coordinator_last_name: "",
-  coordinator_email: "",
-  coordinator_phone: "",
-  name_abbreviation: name.split(" ").map(word => word[0]).join("").toUpperCase(),
-  state,
-  city: "",
-  players
+  game_land: GAME_LANDS[gameLandIndex],
+  description,
+  grade_levels,
+  math_focus,
+  game_type: GAME_TYPES[gameTypeIndex],
+  slug: name.toLowerCase().replace(/ /g, "-"),
 });
 
-const regions: Region[] = [
+
+
+
+
+const gameLands: GameLand[] = [
   {
-    name: "Northeast",
+    name: "Algebra Land",
     data: {
-      teams: [
-        createMockTeam("Greater Boston", "MA", [
-          createMockPlayer("Robert Sluis", 9, "Boston", 1),
-          createMockPlayer("Ethel Amanda Mc'Cain", 8, "Boston", 2),
-          createMockPlayer("Breanna Marcus", 7, "Boston", 3)
-        ]),
-        createMockTeam("VSU", "VA"),
-        createMockTeam("Baltimore Algebra Project", "MD"),
+      games: [
+        createMockGame(
+          "Equation Quest",
+          1,
+          "Solve for x through puzzles and challenges.",
+          ["6th", "7th", "8th"],
+          "Equations and Expressions",
+          0
+        ),
+        createMockGame(
+          "Variable Dash",
+          1,
+          "A fast-paced open floor game using variable cards.",
+          ["4th", "5th"],
+          "Intro to Variables",
+          0
+        ),
       ],
     },
   },
   {
-    name: "Midwest",
+    name: "Fraction Land",
     data: {
-      teams: [
-        createMockTeam("Metro HS", "OH"),
-        createMockTeam("FOCUOUS", "IL"),
-        createMockTeam("inStem", "IL"),
-        createMockTeam("Redwing", "MN"),
+      games: [
+        createMockGame(
+          "Fraction Race",
+          2,
+          "Players compare and order fractions to win.",
+          ["3rd", "4th"],
+          "Comparing Fractions",
+          0
+        ),
+        createMockGame(
+          "Pizza Slices",
+          2,
+          "Assemble fractional pizzas in this tabletop challenge.",
+          ["2nd", "3rd"],
+          "Fraction Models",
+          1
+        ),
       ],
-    },
-  },
-  {
-    name: "South",
-    data: {
-      teams: [
-        createMockTeam("Metro Atlanta Clayton County", "GA"),
-        createMockTeam("Bob Moses Research Center", "FL"),
-      ],
-    },
-  },
-  {
-    name: "West",
-    data: {
-      teams: [createMockTeam("Crossroads", "CA")],
     },
   },
 ];
 
-// add a slug to each team to make it easier to link to the team page
-regions.forEach((region) => {
-  region.data.teams.forEach((team) => {
-    team.slug = team.name.toLowerCase().replace(/ /g, "-");
-    team.region = region.name;
-  });
-});
 
-export async function updateTeam(teamId: number, updatedData: Partial<Team>) {
+export async function updateGame(gameId: number, updatedData: Partial<Game>) {
   const supabase = createClient();
   
   const { data, error } = await supabase
-    .from('teams')
+    .from("games")
     .update(updatedData)
-    .eq('id', teamId)
+    .eq("id", gameId)
     .select()
     .single();
 
   if (error) {
-    console.error('Error updating team:', error);
+    console.error("Error updating game:", error);
     return { error };
   }
 
   return { data };
 }
 
-export default regions;
+
+export default gameLands;

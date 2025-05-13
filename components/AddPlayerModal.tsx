@@ -1,133 +1,119 @@
 import { useEffect } from "react";
 import { Button } from "@headlessui/react";
 import { FormEvent } from 'react'
-import { Player } from "@/data/teams";
+import { updateGame, Game } from "@/data/teams";
 import { EditField } from "./EditField";
-import { updatePlayer } from "@/utils/supabase/database_functions";
 
-const blankPlayer: Omit<Player, "id" | "created_at"> = {
-  first_name: "",
-  last_name: "",
+const blankGame: Omit<Game, "id" | "created_at" | "slug"> = {
   name: "",
-  tshirt_size: null,
-  dietary_restrictions: null,
-  emergency_contact_name: null,
-  emergency_contact_phone_number: null,
-  emergency_contact_relationship: null,
-  grade: 0,
-  team_id: 0,
-  verified: false,
-  yearsYPP: 0,
-  city: ""
+  game_land: "Algebra Land", // default
+  description: "",
+  grade_levels: [],
+  math_focus: "",
+  game_type: "Open Floor",
 };
 
-export function AddPlayerModal({ playerData = blankPlayer, onClose }: {playerData: Player, onClose:()=>void}) {
+export function AddGameModal({ gameData = blankGame, onClose }: { gameData?: Partial<Game>, onClose: () => void }) {
   async function submitData(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const updatedPlayer = { ...blankPlayer };
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const updatedGame = { ...blankGame };
 
-    formData.forEach((value, key) => {     
-      if (key === "verified") {
-        updatedPlayer.verified = formData.has("verified");
-      } else if (key === "grade") {
-        updatedPlayer.grade = Number(value);
-      } else if (key === "team_id") {
-        updatedPlayer.team_id = Number(value);
-      } else if (key === "yearsYPP") {
-        updatedPlayer.yearsYPP = Number(value);
-      } else if (key === "first_name" || key === "last_name" || key === "name" || key === "city") {
-        updatedPlayer[key] = value as string;
-      } else if (key === "tshirt_size" || key === "dietary_restrictions" || 
-                 key === "emergency_contact_name" || key === "emergency_contact_phone_number" || 
-                 key === "emergency_contact_relationship") {
-        updatedPlayer[key] = value as string | null;
+    formData.forEach((value, key) => {
+      if (key === "grade_levels") {
+        updatedGame.grade_levels = (value as string).split(",").map(s => s.trim());
+      } else if (key === "name" || key === "description" || key === "math_focus") {
+        updatedGame[key] = value as string;
+      } else if (key === "game_land") {
+        updatedGame.game_land = value as Game["game_land"];
+      } else if (key === "game_type") {
+        updatedGame.game_type = value as Game["game_type"];
       }
     });
 
-    console.log("final object:", updatedPlayer)
-    if (!playerData.id) {
-      console.error("Cannot update player: No ID provided");
+    console.log("Updated Game Object:", updatedGame);
+
+    if (!gameData.id) {
+      console.error("Cannot update game: No ID provided");
       return;
     }
-    const result = await updatePlayer(playerData.id, updatedPlayer)
-    
-    if (result && result.error) {
-      console.error("Error While Submitting Data", result.error);
+
+    const result = await updateGame(gameData.id, updatedGame);
+
+    if (result?.error) {
+      console.error("Error while submitting game data", result.error);
       return;
     }
-  
-    onClose(); // Only close on success
+
+    onClose(); // close only on success
   }
 
-  useEffect(() => {
-    // refresh when editedPlayer changes
-  }, [playerData])
+  useEffect(() => {}, [gameData]);
+
   
   return (
-  <div className="fixed inset-0 flex flex-col justify-center items-center bg-gray-900/50 z-50">
-    
-    <div className="bg-white py-4 px-6">
-      <form onSubmit={submitData} id="player-form">
-        <div>
-          <EditField label="First Name" name="first_name" required={true} defaultValue={playerData.first_name ?? ""} type="text" form_id="player-form" onChange={(val)=>{console.log("val", val)}}/>
+    <div className="fixed inset-0 flex flex-col justify-center items-center bg-gray-900/50 z-50">
+      <div className="bg-white py-4 px-6">
+        <form onSubmit={submitData} id="game-form">
           <EditField
-            label="Last Name"
-            name="last_name" 
+            label="Game Name"
+            name="name"
             required={true}
-            defaultValue={playerData.last_name ?? ""}
+            defaultValue={gameData.name ?? ""}
             type="text"
-            form_id="player-form"
-            onChange={(val)=>{console.log("val", val)}}
+            form_id="game-form"
+            onChange={(val) => console.log(val)}
           />
           <EditField
-            label="T-shirt Size"
-            name="tshirt_size" 
-            defaultValue={playerData.tshirt_size ?? ""}
+            label="Game Land"
+            name="game_land"
+            defaultValue={gameData.game_land ?? ""}
             type="text"
-            form_id="player-form"
-            onChange={(val)=>{console.log("val", val)}}
+            form_id="game-form"
+            onChange={(val) => console.log(val)}
           />
           <EditField
-            label="Dietary Restrictions"
-            name="dietary_restrictions" 
-            defaultValue={playerData.dietary_restrictions ?? ""}
+            label="Game Type (Open Floor or Table Top)"
+            name="game_type"
+            defaultValue={gameData.game_type ?? ""}
             type="text"
-            form_id="player-form"
-            onChange={(val)=>{console.log("val", val)}}
+            form_id="game-form"
+            onChange={(val) => console.log(val)}
           />
           <EditField
-            label="Emergency Contact Name"
-            name="emergency_contact_name" 
-            defaultValue={playerData.emergency_contact_name ?? ""}
+            label="Grade Levels (comma separated)"
+            name="grade_levels"
+            defaultValue={gameData.grade_levels?.join(", ") ?? ""}
             type="text"
-            form_id="player-form"
-            onChange={(val)=>{console.log("val", val)}}
+            form_id="game-form"
+            onChange={(val) => console.log(val)}
           />
           <EditField
-            label="Emergency Contact Phone"
-            name="emergency_contact_phone_number" 
-            defaultValue={playerData.emergency_contact_phone_number ?? ""}
+            label="Math Focus"
+            name="math_focus"
+            defaultValue={gameData.math_focus ?? ""}
             type="text"
-            form_id="player-form"
-            onChange={(val)=>{console.log("val", val)}}
+            form_id="game-form"
+            onChange={(val) => console.log(val)}
           />
-          <EditField label="Emergency Contact Relationship" name="emergency_contact_relationship" defaultValue={playerData.emergency_contact_relationship ?? ""} type="text" form_id="player-form" onChange={(val)=>{console.log("val", val)}}/>
-          <EditField label="Grade" name="grade" defaultValue={playerData.grade ?? 0} type="number" form_id="player-form" onChange={(val)=>{console.log("val", val)}}/>
+          <EditField
+            label="Description"
+            name="description"
+            defaultValue={gameData.description ?? ""}
+            type="text"
+            form_id="game-form"
+            onChange={(val) => console.log(val)}
+          />
 
-        <div>
-          <label>
-            <input name="verified" type="checkbox" form="player-form" defaultChecked={playerData.verified}/>
-            Verified
-          </label>
-        </div>
-
-        </div>
-        <Button type="submit" form="player-form" className="bg-[#427c41] hover:bg-[#59a957] rounded-xl text-white font-bold mr-4 mt-4 py-2 px-4">Save</Button>
-        <Button onClick={onClose} className="bg-gray-500 hover:bg-gray-400 rounded-xl text-white font-bold py-2 px-4">Cancel</Button>
-      </form>
+          <Button type="submit" form="game-form" className="bg-[#427c41] hover:bg-[#59a957] rounded-xl text-white font-bold mr-4 mt-4 py-2 px-4">
+            Save
+          </Button>
+          <Button onClick={onClose} className="bg-gray-500 hover:bg-gray-400 rounded-xl text-white font-bold py-2 px-4">
+            Cancel
+          </Button>
+        </form>
+      </div>
     </div>
-
-  </div>
   );
 }
+
