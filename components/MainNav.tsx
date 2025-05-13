@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const getMobileClasses = (path: string) => {
     const activeClasses: Record<string, string> = {
-      "/teams":
+      "/games":
         "block border-l-4 !border-yellow-800 bg-gray-300/10 py-2 pl-3 pr-4 text-base font-medium !text-yellow-600 rounded-tr-lg rounded-br-lg transition-all",
       "/tournaments":
         "block border-l-4 !border-red-800 bg-gray-300/10 py-2 pl-3 pr-4 text-base font-medium !text-red-700 rounded-tr-lg rounded-br-lg transition-all",
@@ -54,14 +54,14 @@ export default function Navbar() {
             <FlagwayLogo />
             <div className="hidden sm:pl-12  sm:flex sm:space-x-3 sm:*:min-h-8 *:w-fit">
               <Link
-                href="/teams"
+                href="/games"
                 className={clsx(
                   "nav-item relative hover:text-yellow-600" +
-                    (pathname.startsWith("/teams") ? " text-yellow-600" : ""),
+                    (pathname.startsWith("/games") ? " text-yellow-600" : ""),
                 )}
               >
-                <UserGroupIcon className="inline h-4 mr-2" /> Teams
-                {pathname.startsWith("/teams") && (
+                <UserGroupIcon className="inline h-4 mr-2" /> Games
+                {pathname.startsWith("/games") && (
                   <>
                     <motion.div
                       layoutId="underline"
@@ -191,8 +191,8 @@ export default function Navbar() {
         <div className="space-y-1 pb-3 pt-2">
           <DisclosureButton
             as="a"
-            href="/teams"
-            className={getMobileClasses("/teams")}
+            href="/games"
+            className={getMobileClasses("/games")}
           >
             <UserGroupIcon className="inline h-[1rem] mr-2" /> Teams
           </DisclosureButton>
