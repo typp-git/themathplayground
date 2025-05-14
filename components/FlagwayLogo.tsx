@@ -19,18 +19,19 @@ export default function FlagwayLogo() {
       >
         <Image
           priority
-          src="/YPP-Logo-white.webp"
+          src="/mathplaygroundlogo_logo2.png"
           alt="Logo of the Young People's Project"
-          width={150}
-          height={50}
-          className="w-[40px] md:w-[65px] h-auto"
+          width={1000}
+          height={1000}
+          className="w-[90px] md:w-[200px] h-auto"
         />
-
+{/* /> 
         <h3 className="!text-2xl *:font-bold leading-none font-display w-fit">
           <span className="">FLAGWAY</span>
           <br />
           <span className="">LEAGUE</span>
         </h3>
+ */}
       </Link>
     </div>
   );

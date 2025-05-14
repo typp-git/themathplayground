@@ -15,6 +15,7 @@ export type Game = {
 
 export type GameLand = {
   name: string;
+  landDescription: string;
   data: {
     games: Game[];
   };
@@ -63,12 +64,13 @@ const createMockGame = (
 const gameLands: GameLand[] = [
   {
     name: "Algebra Land",
+    landDescription: "Algebra Land helps 6th - 8th graders develop skills in the following strands: Ratio and Proportional Relationships, Expressions and Equations, and Statistics and Probability. Concepts focus on representations of ratio relationships, trip lines and the idea of a movement number, probability and random walks on mathematical objects, and introduction to functions.",
     data: {
       games: [
         createMockGame(
           "Hula Hoop Race",
           0,
-          "...",
+          "Team stands in a circle and hold hands. They place a hula hoop over two people's hands. How many people can go through the hoop in 10 seconds without anyone breaking hands? Continue this process but increase the time to 15 seconds, 20 seconds, and then 30 seconds. What is the ratio of the number of people through the hoop to the number of seconds for each round? Represent these ratios in a table and on a graph. Discuss the data: which round was the fastest? what would the table or graph look like if players played at a constant rate from round to round?",
           ["1st-8th"],
           "Multiplicative Reasoning",
           0,
@@ -86,8 +88,8 @@ const gameLands: GameLand[] = [
         createMockGame(
           "Random Walks",
           0,
-          "Participants will roll a multicolored block/dice to determine the path on the displayed structure. Based on the color they land on, they will either go left or right aligned with the color. One of the objectives is to guess the probability of ending on a certain color after a certain number of attempts.",
-          ["6th", "7th", "8th"],
+          "A “random walk” can be thought of as a trip that is controlled by a coin flip. Building on the Trip Line model, if someone starts on the Trip Line at the “benchmark” (the point labeled “0”) and then flips a coin and if “heads” you take one step to the right and “tails” you take one step to the left, the path you take is called a random walk. Random walks will provide students an early experience of probability. In addition, having the class produce many “sample paths” will generate data sets that will be the source of an introduction to statistics. Students can “bet” on what the most likely landing spot would be after some number of coin flips and how probable it would be for a person to end up at a place after a certain number of coin flips. YPP has created random walk activities that are played on different mathematical objects: tree diagrams, circles with a discrete number of points on them, trip lines, and directed graphs.",
+          ["2nd-8th"],
           "Equations and Expressions",
           0,
           "/team-logos/randomwalks.png"
@@ -98,25 +100,27 @@ const gameLands: GameLand[] = [
   // Fraction LAND IS 1 ------------------------------------------
   {
     name: "Fraction Land",
+    landDescription: "Fraction Land helps 3rd - 6th graders understand fractions. Concepts include working with unit fractions with a numerator of 1, adding and subtracting fractions, fraction equivalence, and adding/subtracting and multiplying and dividing fractions by whole numbers.",
     data: {
       games: [
-        createMockGame(
-          "Roll That Fraction",
-          1,
-          "...",
-          ["3rd-8th"],
-          "Comparing Fractions",
-          1,
-          "/team-logos/rollthatfraction.png"
-        ),
+        
         createMockGame(
           "Fraction Finding",
           1,
           "Children will be able to identify fractions on a number line using two dice to create fractions. 1) Kids will be rolling two dice and creating fractions based on the numbers rolled on the dice. They will take that fraction and locate it on a number line where they will race to place a polyspot in the correct location.  2) This is at least a 2 player game. The kids will battle each other to see who can locate more fractions on a number line than the other.",
-          ["2nd", "3rd"],
+          ["3rd-7th"],
           "Fractions",
           0,
           "/team-logos/fractionfinding.png"
+        ),
+        createMockGame(
+          "Making Jewelry",
+          3,
+          "With a given amount of beads, participants will create a bracelet using a pattern. For example: for every 2 green beads, 1 black bead, or for every 4 blue beads, follows 2 red beads. At the end of this activity, participants will get to learn about the ratio they used and go home with a bracelet. Younger students can represent the pattern by drawing a picture, older students can represent the pattern in a table and on a graph.",
+          ["All"],
+          "Ratio and proportions",
+          1,
+          "/team-logos/makingjewelry.png"
         ),
       ],
     },
@@ -125,6 +129,7 @@ const gameLands: GameLand[] = [
   // Flagway LAND IS 2 ------------------------------------------
   {
     name: "Flagway Land",
+    landDescription: "Flagway Land helps 4th - 7th graders deepen and apply their number sense to a study of the Mobius Function, which categorizes the natural numbers into three mutually exclusive groups according to the prime factorization of the number. Students use algebraic representations of numbers to support categorization and multiplicative fluency skills. Flagway builds number sense and helps students apply algebraic expressions to solve a math problem.",
     data: {
       games: [
         createMockGame(
@@ -175,35 +180,11 @@ const gameLands: GameLand[] = [
       ],
     },
   },
-  // Innovation LAND IS 4 ------------------------------------------
-  {
-    name: "Innovatation Land",
-    data: {
-      games: [
-        createMockGame(
-          "Origins of Flagway",
-          4,
-          "Players compare and order fractions to win.",
-          ["3rd", "4th"],
-          "Comparing Fractions",
-          0,
-          "/team-logos/theoriginsofflagway.png"
-        ),
-        createMockGame(
-          "Lets Take a Trip Card Game",
-          4,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
-          1,
-          "/team-logos/tripcards.png"
-        ),
-      ],
-    },
-  },
+  
   // Number Discovery LAND IS 3 ------------------------------------------
   {
     name: "Number Discovery Land",
+    landDescription: "Number Discovery Land helps 2nd - 6th graders develop skills across the following strands: Operations and Algebraic Thinking, Number and Operations in Base 10, and Geometry. Concepts include fluency with addition, subtraction, multiplication, and division; categorization and fluency with odd/even, and prime/composite numbers; and analyzing shapes.",
     data: {
       games: [
         createMockGame(
@@ -218,119 +199,147 @@ const gameLands: GameLand[] = [
         createMockGame(
           "Blazing Trails",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "...",
+          ["3rd-7th"],
+          "Number Sense",
           1,
           "/team-logos/blazingtrails.png"
         ),
         createMockGame(
           "Factorization Puzzles",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "Build a factor tree using prime and composite numbers that may or may not belong. Players place the largest number at the top and continue to break that number down leaving only prime numbers at the bottom, to complete a puzzle.",
+          ["4th-8th"],
+          "Factorization",
           1,
           "/team-logos/factorizationpuzzles.png"
         ),
         createMockGame(
           "Find The Path",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "Students from grades 2-5, answer addition and subtraction with fraction questions while on a grid of 12-16 poly spots starting from one end and trying to end at the opposite side.",
+          ["3rd-8th"],
+          "Arithmetic",
           1,
           "/team-logos/findthepath.png"
         ),
         createMockGame(
           "Geometry Character Creation",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "Use all of the pre-selected shapes to create a body, head, face, and hair. Once drawn in pencil kids are free to color in their character. This helps with understanding shapes/basic geometry.",
+          ["3rd-7th"],
+          "Geometry",
           1,
           "/team-logos/geometrycharactercreation.png"
         ),
         createMockGame(
-          "Making Jewelry",
-          3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
-          1,
-          "/team-logos/makingjewelry.png"
-        ),
-        createMockGame(
           "Blazing Trails",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "...",
+          ["3rd-7th"],
+          "Number Sense",
           1,
           "/team-logos/blazingtrails.png"
         ),
         createMockGame(
           "Math Ladder",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "Solve equation cards and place them along the ladder. Players see two displayed decks of equation cards to solve.",
+          ["3rd-7th"],
+          "Number Sense",
           1,
           "/team-logos/mathladder.png"
         ),
         createMockGame(
           "Math Race",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "Use operations to solve equations to build fluency with math seen in the classroom to advance their understanding and accuracy of math problems while competing with other students.",
+          ["3rd-7th"],
+          "Variety of Topics",
           1,
           "/team-logos/mathrace.png"
         ),
         createMockGame(
           "Number Spot Duel",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "...",
+          ["3rd-7th"],
+          "Number Sense",
           1,
           "/team-logos/numberspotduel.png"
         ),
         createMockGame(
           "PFC Matchup",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "Prime Factor Card (PFC) Match Up. Place number cards on the correct PFC. Players see a displayed deck of PFCs either in order from least to greatest or randomized. They use the prime factors to multiply together and place the number card they are holding on that same spot.",
+          ["3rd-6th"],
+          "Prime Numbers",
           1,
           "/team-logos/pfcmatchup.png"
         ),
         createMockGame(
           "Prime Hunt",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "Sort a deck of number cards into two groups, one being prime, and the other composite. Players usually play multiple 30 second rounds against an opponent to work on speed and accuracy.",
+          ["3rd-6th"],
+          "Prime Numbers",
           1,
           "/team-logos/primehunt.png"
         ),
         createMockGame(
           "Rock Paper Scissors Multiply",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "Competitive form of rock paper scissors using their fingers (2-5). When two students face off, if one player has 3 fingers up and the other 5, they will multiply the fingers to find the product.",
+          ["3rd-7th"],
+          "Multiplication",
           1,
-          "/team-logos/rockpaperscissorsmultiple.png"
+          "/team-logos/rockpaperscissorsmultiply.png"
         ),
         createMockGame(
           "The Winding Game",
           3,
-          "Assemble fractional pizzas in this tabletop challenge.",
-          ["2nd", "3rd"],
-          "Fraction Models",
+          "...",
+          ["2nd-7th"],
+          "Multiples, Counting, Theory",
           1,
           "/team-logos/thewindinggame.png"
+        ),
+      ],
+      
+    },
+  },
+  // Innovation LAND IS 4 ------------------------------------------
+  {
+    name: "Innovation Land",
+    landDescription: "Innovation Land is a featured space in the Math Playground where partners in the YPP Network showcase their unique math games and learning experiences. While many of these experiences conceptually align with one of the four original playground lands, you may occasionally find partners presenting their games within those other lands as well.",
+    data: {
+      games: [
+        createMockGame(
+          "Roll That Fraction",
+          1,
+          "Using a pair of dice, students will label one die the numerator and the other denominator. Playing against an opponent, whomever rolls the larger fraction gets to place their fraction on a number line. They continue for 5 rounds and the player with the biggest fractions wins. ----- Piece of Pi and Roll that Fraction are games developed by the YPP Math Playbook team in partnership with the Cambridge Design Lab.",
+          ["3rd-8th"],
+          "Fractions",
+          1,
+          "/team-logos/rollthatfraction.png"
+        ),
+        createMockGame(
+          "Origins of Flagway",
+          4,
+          "Players compare and order fractions to win.",
+          ["3rd", "4th"],
+          "Comparing Fractions",
+          0,
+          "/team-logos/theoriginsofflagway.png"
+        ),
+        createMockGame(
+          "Lets Take a Trip Card Game",
+          4,
+          "The Algebra Project's Lets Take a Trip Card Game instructs players take turns making books of three cards, such that each book represents a valid trip on a trip line. Each book of three cards must have two location cards, representing the start and finish of the trip, and a movement number card, representing the displacement comparing the finish to the start of the trip. Trips represent linear equations in one dimension.",
+          ["3rd-10th"],
+          "Functions",
+          1,
+          "/team-logos/tripcards.png"
         ),
       ],
     },
