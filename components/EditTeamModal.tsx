@@ -1,157 +1,131 @@
 'use client'
+
 import { useState, useEffect, FormEvent } from 'react';
 import { Button } from '@headlessui/react';
-import { updateTeam } from '@/data/teams';
-import { Team } from '@/data/teams';
-import {EditField} from './EditField';
+import { Game, updateGame } from '@/data/teams';
+import { EditField } from './EditField';
 
-// These are the fields we know are strings in the Team type
+// These are the editable string fields in the Game type
 const STRING_FIELDS = [
   'name',
-  'country',
-  'coordinator_first_name',
-  'coordinator_last_name',
-  'coordinator_email',
-  'coordinator_phone',
-  'name_abbreviation',
-  'state',
-  'city',
+  'description',
+  'math_focus',
   'slug',
-  'region'
+  'game_land',
+  'game_type'
 ] as const;
 
-type TeamStringFields = typeof STRING_FIELDS[number];
+type GameStringFields = typeof STRING_FIELDS[number];
 
-export function EditTeamModal({ teamData, onClose }: {teamData: Team, onClose:()=>void}) {
+export function EditGameModal({ gameData, onClose }: { gameData: Game; onClose: () => void }) {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   async function submitData(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const updatedTeam: Partial<Team> = {};
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const updatedGame: Partial<Game> = {};
 
-    formData.forEach(function(value, key) {     
-      if (STRING_FIELDS.includes(key as TeamStringFields)) {
-        updatedTeam[key as TeamStringFields] = value.toString();
+    formData.forEach((value, key) => {
+      const stringValue = value.toString();
+    
+      if (key === "grade_levels") {
+        updatedGame.grade_levels = stringValue.split(",").map((g) => g.trim());
+      } else if ((STRING_FIELDS as readonly string[]).includes(key)) {
+        (updatedGame as any)[key] = stringValue;
       }
     });
 
-    console.log("final object:", updatedTeam)
-    const result = await updateTeam(teamData.id, updatedTeam)
-    
+    console.log("Final game object to update:", updatedGame);
+
+    const result = await updateGame(gameData.id, updatedGame);
+
     if (result && result.error) {
-      console.error("Error While Submitting Data", result.error);
+      console.error("Error while submitting data", result.error);
       return;
     }
-  
+
     setHasUnsavedChanges(false);
     onClose(); // Only close on success
   }
 
-  useEffect(() => {
-    // refresh when teamData changes
-  }, [teamData])
-  
+  useEffect(() => {}, [gameData]);
+
   return (
     <div className="fixed inset-0 flex flex-col justify-center items-center bg-gray-800/50 z-50">
       <div className="bg-white rounded-lg py-4 px-6 max-w-3xl w-full mx-4">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-display font-bold">Edit Team</h3>
+          <h3 className="text-lg font-display font-bold">Edit Game</h3>
           {hasUnsavedChanges && (
             <span className="text-sm text-yellow-600">Unsaved changes</span>
           )}
         </div>
-        <form onSubmit={submitData} id="team-form">
+        <form onSubmit={submitData} id="game-form">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <EditField 
-              label="Team Name" 
-              name="name" 
-              defaultValue={teamData.name || ''} 
-              type="text" 
-              form_id="team-form" 
-              onChange={() => setHasUnsavedChanges(true)}
-            />
             <EditField
-              label="City"
-              name="city" 
-              defaultValue={teamData.city || ''}
+              label="Game Name"
+              name="name"
+              defaultValue={gameData.name ?? ""}
               type="text"
-              form_id="team-form"
+              form_id="game-form"
               onChange={() => setHasUnsavedChanges(true)}
             />
             <EditField
-              label="State"
-              name="state" 
-              defaultValue={teamData.state || ''}
+              label="Game Land"
+              name="game_land"
+              defaultValue={gameData.game_land ?? ""}
               type="text"
-              form_id="team-form"
+              form_id="game-form"
               onChange={() => setHasUnsavedChanges(true)}
             />
             <EditField
-              label="Country"
-              name="country" 
-              defaultValue={teamData.country || ''}
+              label="Game Type (Open Floor or Table Top)"
+              name="game_type"
+              defaultValue={gameData.game_type ?? ""}
               type="text"
-              form_id="team-form"
+              form_id="game-form"
               onChange={() => setHasUnsavedChanges(true)}
             />
             <EditField
-              label="Coordinator First Name"
-              name="coordinator_first_name" 
-              defaultValue={teamData.coordinator_first_name || ''}
+              label="Grade Levels (comma-separated)"
+              name="grade_levels"
+              defaultValue={gameData.grade_levels?.join(", ") ?? ""}
               type="text"
-              form_id="team-form"
+              form_id="game-form"
               onChange={() => setHasUnsavedChanges(true)}
             />
             <EditField
-              label="Coordinator Last Name"
-              name="coordinator_last_name" 
-              defaultValue={teamData.coordinator_last_name || ''}
+              label="Math Focus"
+              name="math_focus"
+              defaultValue={gameData.math_focus ?? ""}
               type="text"
-              form_id="team-form"
+              form_id="game-form"
               onChange={() => setHasUnsavedChanges(true)}
             />
             <EditField
-              label="Coordinator Phone"
-              name="coordinator_phone" 
-              defaultValue={teamData.coordinator_phone || ''}
+              label="Description"
+              name="description"
+              defaultValue={gameData.description ?? ""}
               type="text"
-              form_id="team-form"
-              onChange={() => setHasUnsavedChanges(true)}
-            />
-            <EditField
-              label="Coordinator Email"
-              name="coordinator_email" 
-              defaultValue={teamData.coordinator_email || ''}
-              type="email"
-              form_id="team-form"
-              onChange={() => setHasUnsavedChanges(true)}
-            />
-            <EditField
-              label="Name Abbreviation"
-              name="name_abbreviation" 
-              defaultValue={teamData.name_abbreviation || ''}
-              type="text"
-              form_id="team-form"
+              form_id="game-form"
               onChange={() => setHasUnsavedChanges(true)}
             />
           </div>
 
           <div className="mt-6 flex justify-end">
-            <Button 
-              type="submit" 
-              form="team-form" 
+            <Button
+              type="submit"
+              form="game-form"
               className={`rounded-xl text-white font-bold mr-4 py-2 px-4 ${
-                hasUnsavedChanges 
-                  ? 'bg-[#427c41] hover:bg-[#59a957]' 
+                hasUnsavedChanges
+                  ? 'bg-[#427c41] hover:bg-[#59a957]'
                   : 'bg-gray-400 cursor-not-allowed'
               }`}
               disabled={!hasUnsavedChanges}
             >
               Save
             </Button>
-            <Button 
-              onClick={onClose} 
+            <Button
+              onClick={onClose}
               className="bg-gray-500 hover:bg-gray-400 rounded-xl text-white font-bold py-2 px-4"
             >
               Cancel
@@ -161,4 +135,4 @@ export function EditTeamModal({ teamData, onClose }: {teamData: Team, onClose:()
       </div>
     </div>
   );
-} 
+}

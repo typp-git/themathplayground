@@ -8,7 +8,7 @@ import LoadingHOC from "@/components/LoadingHOC";
 
 export async function generateStaticParams() {
   return gameLands.flatMap((land) =>
-    land.data.games.map((game) => ({ slug: game.slug })),
+    land.data.games.map((game) => ({ slug: game.slug }))
   );
 }
 
@@ -21,7 +21,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return <div>Game not found</div>;
   }
 
-  const { name, game_land, description, grade_levels, math_focus, game_type } = game;
+  const { name, image_url, game_land, description, grade_levels, math_focus, game_type } =
+    game;
 
   return (
     <div
@@ -39,16 +40,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
             Back to All Games
           </Link>
 
-          <div className="h-30 mb-6 w-full flex flex-row items-center">
-            <div className="h-full justify-center shrink-0 aspect-square overflow-hidden [clip-path:polygon(100%_0,100%_50%,100%_100%,0_100%,0%_50%,0_0)]">
-              <Image
-                src="/team-logos/dog-deep.png"
-                alt="Game Logo"
-                width={200}
-                height={200}
-                className="rounded-full"
-              />
-            </div>
+          <div className="h-[220px] mb-6 w-full flex flex-row items-center">
+  {/* Image */}
+  <div className="h-full overflow-hidden rounded-xl">
+    <Image
+      src={image_url ?? "/game-images/default.png"}
+      alt={`${name} Logo`}
+      width={3000} // required for layout fill
+      height={3000}
+      className="h-full w-auto object-cover"
+    />
+  </div>
+
 
             <div
               className="ml-4 pl-12 pr-20 h-full flex-grow min-w-80
@@ -62,7 +65,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               <div>
                 <span className="text-blue-300">Land:</span> {game_land}
               </div>
-    
+
               <div>
                 <span className="text-blue-300">Game Type:</span> {game_type}
               </div>
@@ -70,7 +73,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 <span className="text-blue-300">Math Focus:</span> {math_focus}
               </div>
               <div>
-                <span className="text-blue-300">Grades:</span> {grade_levels.join(", ")}
+                <span className="text-blue-300">Grades:</span>{" "}
+                {grade_levels.join(", ")}
               </div>
             </div>
           </div>
