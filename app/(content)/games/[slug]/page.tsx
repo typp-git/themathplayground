@@ -1,4 +1,4 @@
-import gameLands, { Game } from "@/data/teams"; // renamed from teams.ts
+import gameLands from "@/data/teams"; // renamed from teams.ts
 import Container from "@/components/container";
 import Link from "next/link";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";

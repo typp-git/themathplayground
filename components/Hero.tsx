@@ -7,7 +7,7 @@ interface HeroProps {
   timelineRef: React.RefObject<HTMLDivElement>;
 }
 
-const Hero: React.FC<HeroProps> = ({ timelineRef }: HeroProps) => {
+const Hero: React.FC<HeroProps> = ({  }: HeroProps) => {
   return (
     <div className="overflow-hidden">
       <div className="relative isolate">
@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ timelineRef }: HeroProps) => {
               </h1>
               <p className="mt-6 text-lg leading-8 text-white sm:max-w-md lg:max-w-[40rem]">
                 The Math Playground is organized into four distinct math lands,
-                each reflecting YPP's pedagogical approach of using games,
+                each reflecting YPP&apos;s pedagogical approach of using games,
                 hands-on activities, and multiple representations to build both
                 conceptual understanding and procedural fluency in mathematics.
               </p>

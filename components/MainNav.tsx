@@ -5,7 +5,7 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { TrophyIcon, UserGroupIcon } from "@heroicons/react/20/solid";
+import { UserGroupIcon } from "@heroicons/react/20/solid";
 import { FaUserPlus } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";

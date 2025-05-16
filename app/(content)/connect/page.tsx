@@ -1,4 +1,5 @@
-'use client' 
+"use client";
+import Image from "next/image";
 
 import { useState } from "react";
 
@@ -8,10 +9,12 @@ export default function Example() {
   return (
     <div className="relative bg-white">
       <div className="lg:absolute lg:inset-0 lg:left-1/2">
-        <img
-          alt=""
+        <Image
           src="/photos/numberspotpic.jpg"
-          className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full"
+          alt=""
+          width={2000}
+          height={2000}
+          className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full" // your styling
         />
       </div>
       <div className="pt-16 pb-24 sm:pt-24 sm:pb-32 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2">
@@ -33,7 +36,7 @@ export default function Example() {
                 inbox for the announcement on June 4th, 2025.
               </div>
             ) : (
-				<form
+              <form
                 onSubmit={async (e) => {
                   e.preventDefault();
 
@@ -41,11 +44,14 @@ export default function Example() {
                   const formData = new FormData(form);
 
                   try {
-                    const response = await fetch(process.env.GOOGLE_SCRIPT_API ?? "", {
-                      method: "POST",
-                      mode: "no-cors",
-                      body: formData
-                    });
+                    const response = await fetch(
+                      process.env.GOOGLE_SCRIPT_API ?? "",
+                      {
+                        method: "POST",
+                        mode: "no-cors",
+                        body: formData,
+                      }
+                    );
 
                     setSubmitted(true);
                   } catch (error) {
@@ -288,7 +294,6 @@ export default function Example() {
                     Submit
                   </button>
                 </div>
-                
               </form>
             )}
           </div>
