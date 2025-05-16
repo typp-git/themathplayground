@@ -4,19 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const TextCarousel: React.FC = () => {
   const texts: string[] = [
-    "celebrate learning math",
+    "play with math",
     "laugh while doing math",
-    "find breakthrough in math",
-    "turn learning into an adventure",
+    "explore",
     "discover the joy of numbers",
-    "build confidence in problem solving",
-    "work together to solve challenges",
-    "unlock their math potential",
-    "grow in collaboration and play",
-    "connect math to real life experiences",
-    "make new friends while exploring math",
-    "transform their perspective on math",
-    "succeed in a supportive community",
+    "solve problems",
+    "unlock their math potential.",
+    "collaborate",
+    "connect math to real life",
+    "make new friends",
+    "transform their math story",
     "find excitement in every equation",
   ];
 
@@ -31,7 +28,7 @@ const TextCarousel: React.FC = () => {
   }, [texts.length]);
 
   return (
-    <div className="overflow-hidden flex justify-center items-center h-32 w-full relative">
+    <div className="overflow-hidden flex justify-center items-center h-15 w-full relative">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}

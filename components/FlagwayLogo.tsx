@@ -21,9 +21,9 @@ export default function FlagwayLogo() {
           priority
           src="/mathplaygroundlogo_logo2.png"
           alt="Logo of the Young People's Project"
-          width={1000}
-          height={1000}
-          className="w-[90px] md:w-[200px] h-auto"
+          width={1500}
+          height={1500}
+          className="w-[150px] w-[90px] sm:w-[150px] md:w-[200px] h-auto"
         />
 {/* /> 
         <h3 className="!text-2xl *:font-bold leading-none font-display w-fit">

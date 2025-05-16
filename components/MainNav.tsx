@@ -27,8 +27,8 @@ export default function Navbar() {
         "block border-l-4 !border-red-800 bg-gray-300/10 py-2 pl-3 pr-4 text-base font-medium !text-red-700 rounded-tr-lg rounded-br-lg transition-all",
       "/training":
         "block border-l-4 !border-sky-800 bg-gray-300/10 py-2 pl-3 pr-4 text-base font-medium !text-sky-700 rounded-tr-lg rounded-br-lg transition-all",
-      "/register":
-        "block border-l-4 !border-green-800 bg-gray-300/10 py-2 pl-3 pr-4 text-base font-medium !text-green-800 rounded-tr-lg rounded-br-lg transition-all",
+      "/connect":
+        "block border-l-4 !border-yellow-800 bg-gray-300/10 py-2 pl-3 pr-4 text-base font-medium !text-yellow-600 rounded-tr-lg rounded-br-lg transition-all",
     };
 
     const defaultClasses =
@@ -71,6 +71,7 @@ export default function Navbar() {
                   </>
                 )}
               </Link>
+              {/*
               <Link
                 href="/posts"
                 className={clsx(
@@ -107,20 +108,22 @@ export default function Navbar() {
                   </>
                 )}
               </Link>
+              */}
+
               <Link
-                href="/register"
+                href="/connect"
                 className={clsx(
-                  "nav-item relative hover:text-green-800" +
-                    (pathname.startsWith("/register") ? " text-green-800" : ""),
+                  "nav-item relative hover:text-yellow-600" +
+                    (pathname.startsWith("/connect") ? " text-yellow-600" : ""),
                 )}
               >
                 <FaUserPlus className="inline h-4 mr-2" />
-                Register
-                {pathname.startsWith("/register") && (
+                Connect
+                {pathname.startsWith("/connect") && (
                   <>
                     <motion.div
                       layoutId="underline"
-                      className="bg-green-800 w-10/12 h-0.5 absolute -bottom-0.5 left-0 right-0 m-auto"
+                      className="bg-yellow-600 w-10/12 h-0.5 absolute -bottom-0.5 left-0 right-0 m-auto"
                     ></motion.div>
                     <span className="sr-only">(current)</span>
                   </>
@@ -131,44 +134,7 @@ export default function Navbar() {
               <DashboardNavLink />
             </div>
           </div>
-          {/* <div className="hidden sm:ml-6 sm:flex sm:items-center"> */}
-          {/* Profile dropdown */}
-          {/* <Menu as="div" className="relative ml-3">
-							<div>
-								<MenuButton className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-									<span className="absolute -inset-1.5" />
-									<span className="sr-only">Open user menu</span>
-									<Image
-										alt=""
-										src=""
-										width={32}
-										height={32}
-										className="h-8 w-8 rounded-full"
-									/>
-								</MenuButton>
-							</div>
-							<MenuItems
-								transition
-								className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-							>
-								<MenuItem>
-									<a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
-										Your Profile
-									</a>
-								</MenuItem>
-								<MenuItem>
-									<a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
-										Settings
-									</a>
-								</MenuItem>
-								<MenuItem>
-									<a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
-										Sign out
-									</a>
-								</MenuItem>
-							</MenuItems>
-						</Menu> */}
-          {/* </div> */}
+          
           <div className="-mr-2 flex items-center sm:hidden">
             {/* Mobile menu button */}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -194,13 +160,15 @@ export default function Navbar() {
             href="/games"
             className={getMobileClasses("/games")}
           >
-            <UserGroupIcon className="inline h-[1rem] mr-2" /> Teams
+            <UserGroupIcon className="inline h-[1rem] mr-2" /> Games
           </DisclosureButton>
+           {/* 
           <DisclosureButton
             as="a"
             href="/posts"
             className={getMobileClasses("/posts")}
           >
+            
             <TrophyIcon className="inline h-[1rem] mr-2" /> Announcements
           </DisclosureButton>
           <DisclosureButton
@@ -210,13 +178,14 @@ export default function Navbar() {
           >
             <TrophyIcon className="inline h-[1rem] mr-2" /> Tournaments
           </DisclosureButton>
+          */}
           <DisclosureButton
             as="a"
-            href="/register"
-            className={getMobileClasses("/register")}
+            href="/connect"
+            className={getMobileClasses("/connect")}
           >
             <FaUserPlus className="inline h-[1rem] mr-2" />
-            Register
+            Connect
           </DisclosureButton>
         </div>
       </DisclosurePanel>
