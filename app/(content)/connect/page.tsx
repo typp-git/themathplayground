@@ -44,7 +44,7 @@ export default function Example() {
                   const formData = new FormData(form);
 
                   try {
-                    const response = await fetch(
+                    await fetch(
                       process.env.GOOGLE_SCRIPT_API ?? "",
                       {
                         method: "POST",
@@ -262,7 +262,7 @@ export default function Example() {
                   {/* Add to Newsletter */}
                   <fieldset className="sm:col-span-2">
                     <legend className="block text-sm/6 font-semibold text-gray-900 mb-2">
-                      Do you want to be added to YPP's newsletter?
+                      Do you want to be added to YPP&apos;s newsletter?
                     </legend>
                     <div className="flex gap-x-4">
                       <label className="flex items-center gap-x-2">
