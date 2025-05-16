@@ -1,4 +1,3 @@
-import { createClient } from "@/utils/supabase/client";
 
 export type Game = {
   id: number;
@@ -346,22 +345,6 @@ const gameLands: GameLand[] = [
   },
 ];
 
-export async function updateGame(gameId: number, updatedData: Partial<Game>) {
-  const supabase = createClient();
 
-  const { data, error } = await supabase
-    .from("games")
-    .update(updatedData)
-    .eq("id", gameId)
-    .select()
-    .single();
-
-  if (error) {
-    console.error("Error updating game:", error);
-    return { error };
-  }
-
-  return { data };
-}
 
 export default gameLands;

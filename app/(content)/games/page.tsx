@@ -3,7 +3,6 @@ import React from "react";
 import gameLands from "@/data/teams";
 import Link from "next/link";
 import Image from "next/image";
-import { IoIosArrowForward } from "react-icons/io";
 import LoadingHOC from "@/components/LoadingHOC";
 
 

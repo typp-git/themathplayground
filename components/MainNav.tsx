@@ -12,7 +12,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import FlagwayLogo from "./FlagwayLogo";
 import clsx from "clsx";
-import DashboardNavLink from "./DashboardNavLink";
 
 // TAILWIND UI "SIMPLE" NAVBAR
 
@@ -131,7 +130,6 @@ export default function Navbar() {
               </Link>
               {/* <a href="/near-me" className="nav-item">Flagway Near You</a> */}
               {/* <a href="/login" className="nav-item">Log In</a> */}
-              <DashboardNavLink />
             </div>
           </div>
           
