@@ -14,8 +14,9 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const formData = new FormData(form);
 
     try {
-      await fetch(process.env.GOOGLE_SCRIPT_URL!, {
+      await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
         method: "POST",
+		mode: "no-cors", // 👈 you need this for Google Apps Script
         body: formData,
       });
 
