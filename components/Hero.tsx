@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({  }: HeroProps) => {
             width={1920}
             height={1080}
           />
-          {/* green Overlay */}
+          {/*  Overlay */}
           <div
             className="
                         absolute inset-0 

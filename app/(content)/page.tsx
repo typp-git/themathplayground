@@ -39,7 +39,7 @@ export default function Home() {
               <div className="hidden md:block absolute bg-blue-700/20 w-1 h-full left-0 right-0 mx-auto"></div>
 
               <div className={`${sectionClasses} mt-12`}>
-                <div className="rounded-full hidden md:block w-5 h-5 bg-[#D1DBF7] absolute left-0 right-0 m-auto"></div>
+                <div className="rounded-full hidden md:block w-5 h-5 bg-[#f6c42f] absolute left-0 right-0 m-auto"></div>
                 <div className="order-1 px-1 py-4 text-left md:w-5/12">
                   <h2 className="font-bold text-2xl">Number Discovery Land</h2>
 
@@ -70,7 +70,7 @@ export default function Home() {
               </div>
 
               <div className={`${sectionClasses} `}>
-                <div className="rounded-full hidden md:block w-5 h-5 bg-[#D1DBF7] absolute left-0 right-0 m-auto"></div>
+                <div className="rounded-full hidden md:block w-5 h-5 bg-[#134ded] absolute left-0 right-0 m-auto"></div>
                 <div className="order-2 md:order-1 px-3 py-3  md:w-5/12 text-left">
                   <Image
                     className={"-rotate-3 " + imgClasses}
@@ -102,7 +102,7 @@ export default function Home() {
               </div>
 
               <div className={`${sectionClasses}`}>
-                <div className="rounded-full hidden md:block w-5 h-5 bg-[#D1DBF7] absolute left-0 right-0 m-auto"></div>
+                <div className="rounded-full hidden md:block w-5 h-5 bg-[#bd2929] absolute left-0 right-0 m-auto"></div>
                 <div className="order-5 px-1 py-4 md:w-5/12">
                   <h2 className="font-bold text-2xl">Algebra Land</h2>
                   <div className="text-lg italic mb-3"></div>
@@ -133,7 +133,7 @@ export default function Home() {
               </div>
 
               <div className={`${sectionClasses}`}>
-                <div className="rounded-full hidden md:block w-5 h-5 bg-[#D1DBF7] absolute left-0 right-0 m-auto"></div>
+                <div className="rounded-full hidden md:block w-5 h-5 bg-[#147f0f] absolute left-0 right-0 m-auto"></div>
                 <div className="order-2 md:order-1 px-3 py-3 text-left md:md:w-5/12">
                   <Image
                     className={"-rotate-3 " + imgClasses}
