@@ -40,17 +40,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
             Back to All Games
           </Link>
 
-          <div className="mb-6 w-full flex flex-row items-start sm:items-center">
+          <div className="mb-6 w-full flex flex-row items-center">
   {/* Image */}
-  <div className="w-1/2 min-w-[120px] max-w-[200px]">
-    <Image
-      src={image_url ?? "/game-images/default.png"}
-      alt={`${name} Logo`}
-      width={3000}
-      height={3000}
-      className="w-full h-auto object-contain rounded-xl"
-    />
-  </div>
+  <div className="w-1/2 min-w-[120px] max-w-[200px] flex justify-center items-center">
+  <Image
+    src={image_url ?? "/game-images/default.png"}
+    alt={`${name} Logo`}
+    width={3000}
+    height={3000}
+    className="w-auto h-[200px] object-contain rounded-xl"
+  />
+</div>
+
 
   <div
     className="ml-0 pl-5 pr-5 py-9 flex-grow min-w-80
