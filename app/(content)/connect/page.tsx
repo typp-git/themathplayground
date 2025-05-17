@@ -1,36 +1,32 @@
 "use client";
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+
 
 export default function Example() {
-  const [submitted, setSubmitted] = useState(false);
+	const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
 
-    const form = document.querySelector("form") as HTMLFormElement | null;
-    if (!form) {
-      console.error("Form not found");
-      return;
-    }
-
+    const form = e.currentTarget;
     const formData = new FormData(form);
 
-    fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
-      method: "POST",
-      body: formData,
-    })
-      .then(() => {
-        const again = window.confirm("Your entry has been received! Would you like to submit another?");
-        if (again) form.reset();
-      })
-      .catch((err) => console.error("Submission error:", err));
-  }
+    try {
+      await fetch(process.env.GOOGLE_SCRIPT_URL!, {
+        method: "POST",
+        body: formData,
+      });
 
-  function resetForm() {
-    setSubmitted(false);
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Submission failed:", error);
+    }
   }
+          
+
+  
 
   return (
     <div className="relative bg-white">
@@ -59,31 +55,7 @@ export default function Example() {
 			  inbox for the announcement on June 4th, 2025.
 			</div>
             ) : (
-              <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-
-                  const form = e.currentTarget;
-                  const formData = new FormData(form);
-
-                  try {
-                    await fetch(
-                      process.env.GOOGLE_SCRIPT_URL ?? "",
-                      {
-                        method: "POST",
-                        mode: "no-cors",
-                        body: formData,
-                      }
-                    );
-
-                    setSubmitted(true);
-                  } catch (error) {
-                    console.error("Submission failed:", error);
-                  }
-                }}
-                method="POST"
-                className="mt-16"
-              >
+				<form onSubmit={handleSubmit} method="POST" className="mt-16">
                 <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                   {/* First Name */}
                   <div>
