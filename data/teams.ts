@@ -193,7 +193,7 @@ const gameLands: GameLand[] = [
           ["3rd", "4th"],
           "Comparing Fractions",
           0,
-          "/team-logos/4linedots.png"
+          "/team-logos/4linedots"
         ),
         createMockGame(
           "Blazing Trails",
