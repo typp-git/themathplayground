@@ -40,20 +40,20 @@ export default async function Page({ params }: { params: { slug: string } }) {
             Back to All Games
           </Link>
 
-          <div className="h-[220px] mb-6 w-full flex flex-row items-center">
+          <div className="mb-6 w-full flex flex-row items-start sm:items-center">
   {/* Image */}
-  <div className="h-full w-1/2 min-w-[100px] max-w-[200px] overflow-hidden rounded-xl">
+  <div className="w-1/2 min-w-[120px] max-w-[200px]">
     <Image
       src={image_url ?? "/game-images/default.png"}
       alt={`${name} Logo`}
       width={3000}
       height={3000}
-      className="h-full w-auto object-cover"
+      className="w-full h-auto object-contain rounded-xl"
     />
   </div>
 
   <div
-    className="ml-0 pl-5 pr-5 h-full flex-grow min-w-80
+    className="ml-0 pl-5 pr-5 py-9 flex-grow min-w-80
     flex flex-col items-start justify-center 
     bg-gray-700/30 
     [clip-path:polygon(0_0,95%_0%,100%_50%,95%_100%,0_100%)]"
@@ -75,6 +75,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     </div>
   </div>
 </div>
+
 
 
           <h2 className="italic mb-3">DESCRIPTION</h2>
