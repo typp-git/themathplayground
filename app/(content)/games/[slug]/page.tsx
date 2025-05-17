@@ -42,42 +42,40 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           <div className="h-[220px] mb-6 w-full flex flex-row items-center">
   {/* Image */}
-  <div className="h-full overflow-hidden rounded-xl">
+  <div className="h-full w-1/2 min-w-[100px] max-w-[200px] overflow-hidden rounded-xl">
     <Image
       src={image_url ?? "/game-images/default.png"}
       alt={`${name} Logo`}
-      width={3000} // required for layout fill
+      width={3000}
       height={3000}
-      className="h-full w-[250px] object-cover"
+      className="h-full w-auto object-cover"
     />
   </div>
 
+  <div
+    className="ml-0 pl-5 pr-5 h-full flex-grow min-w-80
+    flex flex-col items-start justify-center 
+    bg-gray-700/30 
+    [clip-path:polygon(0_0,95%_0%,100%_50%,95%_100%,0_100%)]"
+  >
+    <h1 className="bg-gradient-to-r from-white to-blue-200 text-transparent bg-clip-text">
+      {name}
+    </h1>
+    <div>
+      <span className="text-blue-300">Land:</span> {game_land}
+    </div>
+    <div>
+      <span className="text-blue-300">Game Type:</span> {game_type}
+    </div>
+    <div>
+      <span className="text-blue-300">Math Focus:</span> {math_focus}
+    </div>
+    <div>
+      <span className="text-blue-300">Grades:</span> {grade_levels.join(", ")}
+    </div>
+  </div>
+</div>
 
-            <div
-              className="ml-4 pl-12 pr-20 h-full flex-grow min-w-80
-            flex flex-col items-start justify-center 
-            bg-gray-700/30 
-            [clip-path:polygon(0_0,95%_0%,100%_50%,95%_100%,0_100%)]"
-            >
-              <h1 className="bg-gradient-to-r from-white to-blue-200 text-transparent bg-clip-text">
-                {name}
-              </h1>
-              <div>
-                <span className="text-blue-300">Land:</span> {game_land}
-              </div>
-
-              <div>
-                <span className="text-blue-300">Game Type:</span> {game_type}
-              </div>
-              <div>
-                <span className="text-blue-300">Math Focus:</span> {math_focus}
-              </div>
-              <div>
-                <span className="text-blue-300">Grades:</span>{" "}
-                {grade_levels.join(", ")}
-              </div>
-            </div>
-          </div>
 
           <h2 className="italic mb-3">DESCRIPTION</h2>
           <div className="bg-gray-700/30 text-white p-4 rounded-lg max-w-xl">
