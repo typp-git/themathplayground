@@ -48,7 +48,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       alt={`${name} Logo`}
       width={3000} // required for layout fill
       height={3000}
-      className="h-full w-auto object-cover"
+      className="h-full w-[250px] object-cover"
     />
   </div>
 
