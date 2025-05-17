@@ -73,7 +73,7 @@ const gameLands: GameLand[] = [
           ["1st-8th"],
           "Multiplicative Reasoning",
           0,
-          "/team-logos/hulahooprace.png"
+          "/photos/hulahooprace.png"
         ),
         createMockGame(
           "Human Programming",
@@ -82,7 +82,7 @@ const gameLands: GameLand[] = [
           ["3rd-8th"],
           "Algorithmic Thinking",
           0,
-          "/team-logos/humanprogramming.png"
+          "/photos/humanprogramming.png"
         ),
         createMockGame(
           "Random Walks",
@@ -91,7 +91,7 @@ const gameLands: GameLand[] = [
           ["2nd-8th"],
           "Equations and Expressions",
           0,
-          "/team-logos/randomwalks.png"
+          "/photos/randomwalks.png"
         ),
       ],
     },
@@ -110,7 +110,7 @@ const gameLands: GameLand[] = [
           ["3rd-7th"],
           "Fractions",
           0,
-          "/team-logos/fractionfinding.png"
+          "/photos/fractionfinding.png"
         ),
         createMockGame(
           "Making Jewelry",
@@ -119,7 +119,7 @@ const gameLands: GameLand[] = [
           ["All"],
           "Ratio and proportions",
           1,
-          "/team-logos/makingjewelry.png"
+          "/photos/makingjewelry.png"
         ),
       ],
     },
@@ -138,7 +138,7 @@ const gameLands: GameLand[] = [
           ["4th-8th"],
           "Algabraic Expressions",
           0,
-          "/team-logos/algebraformlayout.png"
+          "/photos/algebraformlayout.png"
         ),
         createMockGame(
           "Factor Tree Race",
@@ -147,7 +147,7 @@ const gameLands: GameLand[] = [
           ["5th-8th"],
           "Multiples and Factors",
           0,
-          "/team-logos/factortreerace.png"
+          "/photos/factortreerace.png"
         ),
         createMockGame(
           "Flagway Chute",
@@ -156,7 +156,7 @@ const gameLands: GameLand[] = [
           ["5th-8th"],
           "Number Sense",
           1,
-          "/team-logos/flagwaychute.png"
+          "/photos/flagwaychute.png"
         ),
         createMockGame(
           "Flagway Tic Tac Toe",
@@ -165,7 +165,7 @@ const gameLands: GameLand[] = [
           ["5th-8th"],
           "Multiplication, Factorization",
           1,
-          "/team-logos/flagwaytictactoe.png"
+          "/photos/flagwaytictactoe.png"
         ),
         createMockGame(
           "Math Escape Room",
@@ -174,7 +174,7 @@ const gameLands: GameLand[] = [
           ["3rd-8th"],
           "Problem Solving, Number Theory",
           1,
-          "/team-logos/mathescaperoom.png"
+          "/photos/mathescaperoom.png"
         ),
       ],
     },
@@ -193,7 +193,7 @@ const gameLands: GameLand[] = [
           ["3rd", "4th"],
           "Comparing Fractions",
           0,
-          "/team-logos/4linedots"
+          "/photos/4linedots.png"
         ),
         createMockGame(
           "Blazing Trails",
@@ -202,7 +202,7 @@ const gameLands: GameLand[] = [
           ["3rd-7th"],
           "Number Sense",
           1,
-          "/team-logos/blazingtrails.png"
+          "/photos/blazingtrails.png"
         ),
         createMockGame(
           "Factorization Puzzles",
@@ -211,7 +211,7 @@ const gameLands: GameLand[] = [
           ["4th-8th"],
           "Factorization",
           1,
-          "/team-logos/factorizationpuzzles.png"
+          "/photos/factorizationpuzzles.png"
         ),
         createMockGame(
           "Find The Path",
@@ -220,7 +220,7 @@ const gameLands: GameLand[] = [
           ["3rd-8th"],
           "Arithmetic",
           1,
-          "/team-logos/findthepath.png"
+          "/photos/findthepath.png"
         ),
         createMockGame(
           "Geometry Character Creation",
@@ -229,7 +229,7 @@ const gameLands: GameLand[] = [
           ["3rd-7th"],
           "Geometry",
           1,
-          "/team-logos/geometrycharactercreation.png"
+          "/photos/geometrycharactercreation.png"
         ),
         createMockGame(
           "Blazing Trails",
@@ -238,7 +238,7 @@ const gameLands: GameLand[] = [
           ["3rd-7th"],
           "Number Sense",
           1,
-          "/team-logos/blazingtrails.png"
+          "/photos/blazingtrails.png"
         ),
         createMockGame(
           "Math Ladder",
@@ -247,7 +247,7 @@ const gameLands: GameLand[] = [
           ["3rd-7th"],
           "Number Sense",
           1,
-          "/team-logos/mathladder.png"
+          "/photos/mathladder.png"
         ),
         createMockGame(
           "Math Race",
@@ -256,7 +256,7 @@ const gameLands: GameLand[] = [
           ["3rd-7th"],
           "Variety of Topics",
           1,
-          "/team-logos/mathrace.png"
+          "/photos/mathrace.png"
         ),
         createMockGame(
           "Number Spot Duel",
@@ -265,7 +265,7 @@ const gameLands: GameLand[] = [
           ["3rd-7th"],
           "Number Sense",
           1,
-          "/team-logos/numberspotduel.png"
+          "/photos/numberspotduel.png"
         ),
         createMockGame(
           "PFC Matchup",
@@ -274,7 +274,7 @@ const gameLands: GameLand[] = [
           ["3rd-6th"],
           "Prime Numbers",
           1,
-          "/team-logos/pfcmatchup.png"
+          "/photos/pfcmatchup.png"
         ),
         createMockGame(
           "Prime Hunt",
@@ -283,7 +283,7 @@ const gameLands: GameLand[] = [
           ["3rd-6th"],
           "Prime Numbers",
           1,
-          "/team-logos/primehunt.png"
+          "/photos/primehunt.png"
         ),
         createMockGame(
           "Rock Paper Scissors Multiply",
@@ -292,7 +292,7 @@ const gameLands: GameLand[] = [
           ["3rd-7th"],
           "Multiplication",
           1,
-          "/team-logos/rockpaperscissorsmultiply.png"
+          "/photos/rockpaperscissorsmultiply.png"
         ),
         createMockGame(
           "The Winding Game",
@@ -301,7 +301,7 @@ const gameLands: GameLand[] = [
           ["2nd-7th"],
           "Multiples, Counting, Theory",
           1,
-          "/team-logos/thewindinggame.png"
+          "/photos/thewindinggame.png"
         ),
       ],
       
@@ -320,7 +320,7 @@ const gameLands: GameLand[] = [
           ["3rd-8th"],
           "Fractions",
           1,
-          "/team-logos/rollthatfraction.png"
+          "/photos/rollthatfraction.png"
         ),
         createMockGame(
           "Origins of Flagway",
@@ -329,7 +329,7 @@ const gameLands: GameLand[] = [
           ["3rd", "4th"],
           "Comparing Fractions",
           0,
-          "/team-logos/theoriginsofflagway.png"
+          "/photos/theoriginsofflagway.png"
         ),
         createMockGame(
           "Lets Take a Trip Card Game",
@@ -338,7 +338,7 @@ const gameLands: GameLand[] = [
           ["3rd-10th"],
           "Functions",
           1,
-          "/team-logos/tripcards.png"
+          "/photos/tripcards.png"
         ),
       ],
     },
