@@ -1,10 +1,36 @@
 "use client";
 import Image from "next/image";
-
 import { useState } from "react";
 
 export default function Example() {
   const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setSubmitted(true);
+
+    const form = document.querySelector("form") as HTMLFormElement | null;
+    if (!form) {
+      console.error("Form not found");
+      return;
+    }
+
+    const formData = new FormData(form);
+
+    fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
+      method: "POST",
+      body: formData,
+    })
+      .then(() => {
+        const again = window.confirm("Your entry has been received! Would you like to submit another?");
+        if (again) form.reset();
+      })
+      .catch((err) => console.error("Submission error:", err));
+  }
+
+  function resetForm() {
+    setSubmitted(false);
+  }
 
   return (
     <div className="relative bg-white">
@@ -14,7 +40,7 @@ export default function Example() {
           alt=""
           width={2000}
           height={2000}
-          className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full" // your styling
+          className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full"
         />
       </div>
       <div className="pt-16 pb-24 sm:pt-24 sm:pb-32 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2">
@@ -24,17 +50,14 @@ export default function Example() {
               Math Playground <span className="text-red-500"> Raffle </span>
             </h1>
             <p>
-              Use the form below to enter the raffle for a YPP-sponsored pizza
-              party! The winner will be announced by email on June 4th, 2025.
-              Thank you for being a source for YPP students to celebrate and
-              share their math stories!
+              Use the form below to enter the raffle for a YPP-sponsored pizza party! The winner will be announced by email on June 4th, 2025. Thank you for being a source for YPP students to celebrate and share their math stories!
             </p>
 
             {submitted ? (
               <div className="mt-10 rounded-md bg-green-100 p-4 text-green-800 shadow-sm ring-1 ring-inset ring-green-300">
-                Thank you! Your entry has been received. Keep an eye on your
-                inbox for the announcement on June 4th, 2025.
-              </div>
+			  Thank you! Your entry has been received. Keep an eye on your
+			  inbox for the announcement on June 4th, 2025.
+			</div>
             ) : (
               <form
                 onSubmit={async (e) => {
@@ -45,7 +68,7 @@ export default function Example() {
 
                   try {
                     await fetch(
-                      process.env.GOOGLE_SCRIPT_API ?? "",
+                      process.env.GOOGLE_SCRIPT_URL ?? "",
                       {
                         method: "POST",
                         mode: "no-cors",
@@ -296,9 +319,10 @@ export default function Example() {
                 </div>
               </form>
             )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+			</div>
+		  </div>
+		</div>
+	  </div>
+	);
+  }
+  
