@@ -297,7 +297,7 @@ const gameLands: GameLand[] = [
         createMockGame(
           "The Winding Game",
           3,
-          "...",
+          "Set up similarly to a clock, participants will walk around the winding structure that is labeled with numbers. As players wind, they will place the number cards down onto the structure. After some time, players will notice certain numbers go to specific numbers and they will then begin to notice patterns. This is the point where they begin to talk about what they see, notice, and can possibly predict based on previous numbers placed.",
           ["2nd-7th"],
           "Multiples, Counting, Theory",
           1,
