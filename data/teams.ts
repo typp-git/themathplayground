@@ -176,6 +176,15 @@ const gameLands: GameLand[] = [
           1,
           "/photos/mathescaperoom.png"
         ),
+        createMockGame(
+          "Walk The Structure",
+          2,
+          "With a participant standing at the start point of the Flagway structure, the facilitator will give the participants a color coded flag to walk the structure until they reach an endpoint. Using various orders of the three colors, this activity can be played at any pace.",
+          ["3rd-8th"],
+          "Pattern Recognition, Algorithmic Thinking",
+          1,
+          "/photos/walkthestructure.png"
+        ),
       ],
     },
   },
@@ -232,22 +241,13 @@ const gameLands: GameLand[] = [
           "/photos/geometrycharactercreation.png"
         ),
         createMockGame(
-          "Blazing Trails",
-          3,
-          "...",
-          ["3rd-7th"],
-          "Number Sense",
-          1,
-          "/photos/blazingtrails.png"
-        ),
-        createMockGame(
-          "Math Ladder",
+          "Math Ladders",
           3,
           "Solve equation cards and place them along the ladder. Players see two displayed decks of equation cards to solve.",
           ["3rd-7th"],
           "Number Sense",
           1,
-          "/photos/mathladder.png"
+          "/photos/mathladders.png"
         ),
         createMockGame(
           "Math Race",
