@@ -152,7 +152,7 @@ const gameLands: GameLand[] = [
         createMockGame(
           "Flagway Chute",
           2,
-          "...",
+          "Place three poly spots – one Red, one Yellow, one Blue at one end of the room.  Players line up in teams relay-race style at the other end of the table.  The first player goes to the judge’s table to grab a number card.  That team member must run to find the bucket (Red, Blue, or Yellow) that corresponds to the number on the card and place the number inside. First team with all of their numbers placed correctly wins.  Teams are required to have a baton, which they pass from one player to the next as each player completes his or her turn.",
           ["5th-8th"],
           "Number Sense",
           1,
@@ -261,7 +261,7 @@ const gameLands: GameLand[] = [
         createMockGame(
           "Number Spot Duel",
           3,
-          "...",
+          "Players will compete to place the correct number card on a blue poly spot (composite) and a red poly spot (prime). There will be an odd amount of poly spots to confirm there is a winner. It is key for players to understand that when only one number card is placed either on a red or blue polyspot, another number can not be placed on top. The players will continue placing number cards until all spots are filled. At this time, the facilitator will check the accuracy to give each team their points.",
           ["3rd-7th"],
           "Number Sense",
           1,
