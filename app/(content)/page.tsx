@@ -32,6 +32,15 @@ export default function Home() {
             <h2 className="font-bold mx-auto text-center text-5xl mb-5">
               About The Math Playground
             </h2>
+            <div className="relative w-full pt-[42%]">
+              <iframe
+                src="https://player.vimeo.com/video/981355271?badge=0&autopause=0&player_id=0&app_id=58479"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full"
+                title="YPP Math Playground"
+              />
+            </div>
             <div
               ref={timelineRef}
               className="relative wrap overflow-hidden p-10 m-auto w-full max-w-xl md:max-w-5xl h-full"
